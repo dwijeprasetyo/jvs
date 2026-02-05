@@ -1,492 +1,313 @@
-import React, { useState, useEffect } from 'react';
-import { initializeApp, getApps } from 'firebase/app';
-import { 
-  getAuth, 
-  signInAnonymously, 
-  onAuthStateChanged, 
-  signInWithCustomToken 
-} from 'firebase/auth';
-import { 
-  getFirestore, 
-  doc, 
-  setDoc, 
-  getDoc, 
-  collection, 
-  onSnapshot 
-} from 'firebase/firestore';
-import { 
-  Upload, Loader2, Copy, CheckCircle2, AlertCircle, Zap, Target, BookOpen, 
-  Star, Settings, Sparkles, Key, ExternalLink, X, Ghost, Wand2, 
-  BarChart, Clock, MessageSquareText, Hash, Image as ImageIcon, Timer, User, Anchor, Flame, Sun, Moon,
-  TrendingUp
-} from 'lucide-react';
-
-// Inisialisasi Firebase
-let auth = null;
-let db = null;
-const appId = typeof __app_id !== 'undefined' ? __app_id : 'jepe-viral-ultimate-v3';
-
-try {
-  const firebaseConfig = typeof __firebase_config !== 'undefined' 
-    ? JSON.parse(__firebase_config) 
-    : null;
-
-  if (firebaseConfig && getApps().length === 0) {
-    const app = initializeApp(firebaseConfig);
-    auth = getAuth(app);
-    db = getFirestore(app);
-  }
-} catch (e) {
-  console.error("Firebase Gagal:", e);
-}
-
-const App = () => {
-  const [user, setUser] = useState(null);
-  const [apiKey, setApiKey] = useState('');
-  const [showSettings, setShowSettings] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-  const [image, setImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState(null);
-  const [description, setDescription] = useState('');
-  
-  // State Input & Konfigurasi
-  const [targetAudience, setTargetAudience] = useState('');
-  const [callOut, setCallOut] = useState('');
-  const [duration, setDuration] = useState('15-30s'); 
-  const [style, setStyle] = useState('ugc'); 
-  const [tone, setTone] = useState('friendly');
-  
-  const [loading, setLoading] = useState(false);
-  const [scripts, setScripts] = useState([]);
-  const [error, setError] = useState(null);
-  const [copyStatus, setCopyStatus] = useState({});
-
-  // Auth Effect
-  useEffect(() => {
-    if (!auth) return;
-    const initAuth = async () => {
-      try {
-        if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-          await signInWithCustomToken(auth, __initial_auth_token);
-        } else {
-          await signInAnonymously(auth);
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KamusHook - 99 Database Hook by Jepengonten</title>
+    
+    <!-- Meta Tags untuk Branding & SEO -->
+    <meta name="description" content="99 formula hook konten viral pilihan. Database hook eksklusif dari jepengonten.">
+    <meta property="og:title" content="KamusHook - 99 Hook Elite">
+    <meta property="og:description" content="99 Strategi Hook terpilih untuk melejitkan konten kamu. Gratis!">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --bg-dark: #0b0f1a;
         }
-      } catch (err) { console.warn("Auth Gagal", err); }
-    };
-    initAuth();
-    const unsubscribe = onAuthStateChanged(auth, setUser);
-    return () => unsubscribe();
-  }, []);
 
-  // Load Settings
-  useEffect(() => {
-    if (!user || !db) return;
-    const loadSettings = async () => {
-      try {
-        const docRef = doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'config');
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) setApiKey(docSnap.data().apiKey || '');
-      } catch (err) { console.error("Gagal Load Settings", err); }
-    };
-    loadSettings();
-  }, [user]);
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: #f1f5f9;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+            background-attachment: fixed;
+            -webkit-tap-highlight-color: transparent;
+        }
 
-  const saveApiKey = async (newKey) => {
-    if (user && db) {
-      try {
-        await setDoc(doc(db, 'artifacts', appId, 'users', user.uid, 'settings', 'config'), {
-          apiKey: newKey,
-          updatedAt: Date.now()
-        });
-      } catch (err) { console.error("Gagal simpan cloud", err); }
-    }
-    setApiKey(newKey);
-    setShowSettings(false);
-  };
+        .glass-card {
+            background: rgba(20, 26, 42, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-        setImage(reader.result.split(',')[1]); 
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+        .hook-gradient {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
 
-  const cleanJsonResponse = (text) => {
-    try {
-      const start = text.indexOf('[');
-      const end = text.lastIndexOf(']') + 1;
-      if (start !== -1 && end !== -1) {
-        return JSON.parse(text.slice(start, end));
-      }
-      return JSON.parse(text);
-    } catch (e) {
-      console.error("Parse Error:", e);
-      throw new Error("Gagal memproses data AI. Coba lagi atau cek API Key.");
-    }
-  };
+        .var-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.5);
+            color: #818cf8;
+            border-radius: 8px;
+            font-weight: 800;
+            margin: 0 4px;
+            font-size: 0.85rem;
+        }
 
-  const generateScripts = async () => {
-    if (!description && !image) { 
-      setError("Berikan deskripsi produk atau upload gambar!"); 
-      return; 
-    }
-    setLoading(true);
-    setError(null);
+        .hook-item-card {
+            transition: all 0.3s ease;
+            background: rgba(25, 33, 53, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            cursor: pointer;
+        }
 
-    const finalTarget = targetAudience.trim() || 'Umum';
-    const finalCallout = callOut.trim() || 'Guys';
+        .hook-item-card:hover {
+            border-color: var(--primary);
+            background: rgba(30, 41, 70, 0.6);
+        }
 
-    const systemPrompt = `Anda adalah Scriptwriter Viral Expert. 
-    TUGAS: Buat 10 variasi script video pendek.
-    FORMAT OUTPUT: JSON ARRAY murni berisi objek:
-    - 'hook': Kalimat 3 detik pertama (sangat provokatif).
-    - 'body': Narasi script (gunakan / untuk jeda pendek, // untuk jeda panjang).
-    - 'visuals': Array [{time, action}] untuk panduan visual.
-    - 'caption': Caption sosmed lengkap.
-    - 'hashtags': Hashtag relevan.
-    - 'viral_score': Angka 80-100.
-    - 'trend_insight': Satu kalimat singkat (Indonesia) kenapa script ini bakal viral.`;
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="pb-24">
 
-    const userPrompt = `PRODUK: ${description}
-    TARGET: ${finalTarget}
-    SAPAAN: ${finalCallout}
-    TONE: ${tone}
-    GAYA: ${style}
-    DURASI: ${duration}
-    ${image ? "Analisis gambar yang diberikan untuk detail visual." : ""}`;
-
-    if (!apiKey) {
-      setTimeout(() => {
-        const mock = Array(5).fill(null).map((_, i) => ({
-          hook: `POV: Kamu baru sadar kalau ${description || 'produk ini'} adalah kunci sukses tahun ini!`,
-          body: `Dengerin ya / jangan sampe nyesel belakangan. // Produk ini didesain buat kamu yang benci ribet. / Bayangin aja, / cuma sekali klik, / masalah beres!`,
-          visuals: [
-            { time: "00:00 - 00:03", action: "Close up ekspresi kaget." },
-            { time: "00:03 - 00:08", action: "Transisi cepat ke demo produk." }
-          ],
-          caption: "Solusi hidup simpel buat kamu!",
-          hashtags: "#viral #racun #trending",
-          viral_score: 92 + i % 5, 
-          trend_insight: "Menggunakan teknik 'Curiosity Gap' yang menahan audience scrolling."
-        }));
-        setScripts(mock);
-        setLoading(false);
-        setError("Mode Demo: API Key belum terpasang.");
-      }, 1500);
-      return;
-    }
-
-    try {
-      const payload = {
-        contents: [{ 
-          parts: [
-            { text: userPrompt }, 
-            ...(image ? [{ inlineData: { mimeType: "image/png", data: image } }] : [])
-          ] 
-        }],
-        systemInstruction: { parts: [{ text: systemPrompt }] },
-        generationConfig: { responseMimeType: "application/json" }
-      };
-
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      
-      const data = await res.json();
-      const content = cleanJsonResponse(data.candidates[0].content.parts[0].text);
-      setScripts(content);
-    } catch (err) {
-      setError(`Terjadi kesalahan: ${err.message}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const copyToClipboard = (text, key) => {
-    const el = document.createElement("textarea");
-    el.value = text;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-    setCopyStatus(prev => ({ ...prev, [key]: true }));
-    setTimeout(() => setCopyStatus(prev => ({ ...prev, [key]: false })), 2000);
-  };
-
-  const styleOptions = [
-    { id: 'ugc', label: 'UGC Style', icon: <User size={14} /> },
-    { id: 'hard', label: 'Hardselling', icon: <Zap size={14} /> },
-    { id: 'soft', label: 'Softselling', icon: <Target size={14} /> },
-    { id: 'story', label: 'Storytelling', icon: <BookOpen size={14} /> },
-    { id: 'review', label: 'Review', icon: <Star size={14} /> },
-  ];
-
-  const toneOptions = [
-    { id: 'formal', label: 'Formal', icon: '👔' },
-    { id: 'friendly', label: 'Friendly', icon: '🤝' },
-    { id: 'genz', label: 'Gen-Z', icon: '💅' },
-    { id: 'satir', label: 'Satir', icon: '💀' },
-  ];
-
-  const theme = {
-    bg: isDarkMode ? 'bg-[#0F172A]' : 'bg-slate-50',
-    header: isDarkMode ? 'bg-slate-900 border-indigo-600 shadow-2xl' : 'bg-white border-indigo-500 shadow-md',
-    card: isDarkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200',
-    input: isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-200' : 'bg-white border-slate-300 text-slate-900',
-    text: isDarkMode ? 'text-slate-100' : 'text-slate-900',
-    subText: isDarkMode ? 'text-slate-400' : 'text-slate-600',
-    activeBtn: 'bg-indigo-600 border-indigo-500 text-white',
-    inactiveBtn: isDarkMode ? 'bg-slate-800 border-slate-700 text-slate-400' : 'bg-slate-100 border-slate-200 text-slate-500'
-  };
-
-  return (
-    <div className={`min-h-screen ${theme.bg} ${theme.text} pb-24 transition-all duration-300 font-sans`}>
-      {/* Header */}
-      <header className={`${theme.header} border-b-4 sticky top-0 z-50`}>
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Flame className="text-indigo-500" fill="currentColor" size={28} />
-            <h1 className="font-black text-2xl uppercase tracking-tighter italic">
-              Jepe Viral <span className="text-indigo-500">Ultimate V3.2</span>
+    <div class="max-w-4xl mx-auto px-6 pt-12">
+        <!-- Header -->
+        <header class="mb-10 text-center animate__animated animate__fadeIn">
+            <h1 class="text-6xl md:text-8xl font-black mb-1 tracking-tighter uppercase italic">
+                KAMUS<span class="text-transparent bg-clip-text hook-gradient">HOOK</span>
             </h1>
-          </div>
-          <div className="flex items-center gap-3">
-            <button onClick={() => setIsDarkMode(!isDarkMode)} className="p-2 rounded-xl border border-slate-700/50 hover:bg-indigo-500/10 transition-all">
-              {isDarkMode ? <Sun className="text-yellow-400" /> : <Moon className="text-indigo-600" />}
-            </button>
-            <button onClick={() => setShowSettings(true)} className="p-2 rounded-xl border border-slate-700/50 hover:bg-indigo-500/10 transition-all">
-              <Settings size={22} />
-            </button>
-          </div>
-        </div>
-      </header>
+            <p class="text-indigo-400 font-bold uppercase text-[10px] tracking-[0.4em] mb-4">
+                99 database hook by jepengonten
+            </p>
+        </header>
 
-      <main className="max-w-7xl mx-auto p-4 md:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
-        {/* Sidebar Input */}
-        <div className="lg:col-span-5 space-y-6">
-          <div className={`${theme.card} rounded-[2rem] p-8 border shadow-xl space-y-6`}>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                 <label className="text-[10px] font-black uppercase tracking-widest opacity-50">Deskripsi Produk <span className="text-rose-500">*</span></label>
-                 <span className="text-[9px] font-bold text-indigo-500 bg-indigo-500/10 px-2 py-0.5 rounded">Wajib</span>
-              </div>
-              <textarea 
-                className={`w-full rounded-2xl p-4 text-sm h-32 resize-none outline-none border-2 focus:border-indigo-500 transition-all ${theme.input}`}
-                placeholder="Ceritakan detail produkmu..."
-                value={description}
-                onChange={e => setDescription(e.target.value)}
-              />
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-1">
-                  <div className="flex justify-between px-1">
-                    <label className="text-[9px] font-black uppercase tracking-widest opacity-50">Target Market</label>
-                    <span className="text-[8px] font-bold text-indigo-400 italic">(Opsional)</span>
-                  </div>
-                  <input className={`w-full rounded-xl p-3 text-xs border-2 outline-none focus:border-indigo-500 ${theme.input}`} placeholder="Contoh: Gen Z" value={targetAudience} onChange={e => setTargetAudience(e.target.value)} />
+        <!-- Shuffle Area -->
+        <div class="glass-card rounded-[2.5rem] mb-10 overflow-hidden relative border-white/5">
+            <div class="p-8 md:p-12 text-center min-h-[250px] flex flex-col justify-center items-center">
+                <div id="random-hook-display" class="text-2xl md:text-4xl font-extrabold text-white leading-tight mb-10 tracking-tight">
+                    Temukan 1 dari 99 strategi viral...
                 </div>
-                <div className="space-y-1">
-                  <div className="flex justify-between px-1">
-                     <label className="text-[9px] font-black uppercase tracking-widest opacity-50">Sapaan</label>
-                     <span className="text-[8px] font-bold text-indigo-400 italic">(Opsional)</span>
-                  </div>
-                  <input className={`w-full rounded-xl p-3 text-xs border-2 outline-none focus:border-indigo-500 ${theme.input}`} placeholder="Contoh: Bestie" value={callOut} onChange={e => setCallOut(e.target.value)} />
-                </div>
-              </div>
-            </div>
-
-            {/* Durasi */}
-            <div className="space-y-3 pt-2 border-t border-slate-700/20">
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-50 flex items-center gap-2"><Timer size={14}/> Durasi Konten</span>
-              <div className="grid grid-cols-3 gap-2">
-                {['15-30s', '45-60s', '75-90s'].map(d => (
-                  <button key={d} onClick={() => setDuration(d)} 
-                    className={`py-2 rounded-xl text-[10px] font-black border transition-all ${duration === d ? theme.activeBtn : theme.inactiveBtn}`}>
-                    {d}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Tone */}
-            <div className="space-y-3">
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-50 flex items-center gap-2">Tone Suara</span>
-              <div className="grid grid-cols-4 gap-2">
-                {toneOptions.map(t => (
-                  <button key={t.id} onClick={() => setTone(t.id)} className={`py-3 rounded-xl flex flex-col items-center border transition-all ${tone === t.id ? theme.activeBtn : theme.inactiveBtn}`}>
-                    <span className="text-lg mb-1">{t.icon}</span>
-                    <span className={`text-[8px] font-black uppercase`}>{t.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Style */}
-            <div className="space-y-3">
-              <span className="text-[10px] font-black uppercase tracking-widest opacity-50 flex items-center gap-2"><Wand2 size={14}/> Gaya Konten</span>
-              <div className="flex flex-wrap gap-2">
-                {styleOptions.map(s => (
-                  <button key={s.id} onClick={() => setStyle(s.id)} 
-                    className={`px-3 py-2 rounded-xl text-[9px] font-black uppercase flex items-center gap-2 border transition-all ${style === s.id ? theme.activeBtn : theme.inactiveBtn}`}>
-                    {s.icon} {s.label}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Image Upload */}
-            <div className="space-y-3 border-t border-slate-700/20 pt-4">
-              <div className="flex justify-between items-center px-1">
-                <label className="text-[10px] font-black uppercase tracking-widest opacity-50 flex items-center gap-2"><ImageIcon size={14}/> Visual Reference</label>
-                <span className="text-[8px] font-bold text-indigo-400 italic">(Opsional)</span>
-              </div>
-              <label className="flex flex-col items-center justify-center w-full h-24 border-2 border-dashed rounded-2xl cursor-pointer hover:bg-indigo-500/5 transition-all">
-                {imagePreview ? <img src={imagePreview} className="h-full w-full object-cover rounded-2xl" /> : <div className="text-slate-500 flex flex-col items-center"><Upload size={20}/><span className="text-[10px] font-bold mt-1">UPLOAD GAMBAR</span></div>}
-                <input type="file" className="hidden" accept="image/*" onChange={handleImageChange} />
-              </label>
-            </div>
-
-            <button onClick={generateScripts} disabled={loading} className="w-full bg-indigo-600 hover:bg-indigo-500 text-white py-4 rounded-2xl font-black uppercase text-sm shadow-xl transition-all flex items-center justify-center gap-3 active:scale-95 disabled:opacity-50">
-              {loading ? <Loader2 className="animate-spin" /> : <><Zap size={18} fill="white" /> Hasilkan Script Viral</>}
-            </button>
-          </div>
-        </div>
-
-        {/* Content Area */}
-        <div className="lg:col-span-7 space-y-8">
-          {error && (
-            <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-500 text-xs font-bold flex items-center gap-3">
-              <AlertCircle size={18} /> {error}
-            </div>
-          )}
-
-          {scripts.map((s, idx) => (
-            <div key={idx} className={`${theme.card} rounded-[2.5rem] border-2 shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-4`}>
-              <div className="bg-indigo-700 p-8 text-center border-b-4 border-indigo-900">
-                <span className="text-[10px] font-black text-white/50 uppercase tracking-[0.4em] block mb-2">H O O K</span>
-                <h2 className="text-white text-2xl md:text-3xl font-black italic tracking-tight italic">"{s.hook}"</h2>
-              </div>
-              <div className="p-8 space-y-8">
-                <div className="grid grid-cols-2 gap-4">
-                  <div className={`p-4 rounded-2xl border ${isDarkMode ? 'bg-slate-800/50 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-[9px] font-bold opacity-50 uppercase tracking-widest flex items-center gap-1">
-                        <Flame size={12} className="text-orange-500" /> Viral Potential
-                      </span>
-                      <span className="text-xs font-black text-indigo-500 italic">{s.viral_score}%</span>
-                    </div>
-                    <div className="h-2 bg-slate-700/30 rounded-full overflow-hidden">
-                      <div className="h-full bg-indigo-500 rounded-full" style={{ width: `${s.viral_score}%` }} />
-                    </div>
-                  </div>
-                  <div className={`p-4 rounded-2xl border ${isDarkMode ? 'bg-emerald-900/10 border-emerald-900/30' : 'bg-emerald-50 border-emerald-200'}`}>
-                    <span className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest flex items-center gap-1 mb-1">
-                      <TrendingUp size={12} /> Trend Insight
-                    </span>
-                    <p className={`text-[10px] font-medium leading-tight ${theme.subText}`}>{s.trend_insight || 'Menggunakan pola retensi tinggi.'}</p>
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="space-y-4">
-                    <h3 className="text-[10px] font-black uppercase tracking-widest text-indigo-500 flex items-center gap-2"><Clock size={14}/> Storyboard</h3>
-                    <div className="space-y-3">
-                      {s.visuals?.map((v, i) => (
-                        <div key={i} className="p-3 rounded-xl border border-slate-700/50 bg-indigo-500/5 text-xs">
-                          <span className="font-black text-indigo-400 block mb-1">{v.time}</span>
-                          <p className={theme.subText}>{v.action}</p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <h3 className="text-[10px] font-black uppercase tracking-widest text-indigo-500 flex items-center gap-2"><MessageSquareText size={14}/> Script Naskah</h3>
-                    <div className="relative group">
-                      <div className={`p-5 rounded-2xl border-2 italic font-bold leading-relaxed min-h-[150px] ${isDarkMode ? 'bg-black/20 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-                        {s.body}
-                      </div>
-                      <button onClick={() => copyToClipboard(s.body, `b-${idx}`)} className="absolute bottom-4 right-4 p-2 bg-indigo-600 text-white rounded-lg opacity-0 group-hover:opacity-100 transition-all">
-                        {copyStatus[`b-${idx}`] ? <CheckCircle2 size={16}/> : <Copy size={16}/>}
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={`p-6 rounded-3xl border-2 border-dashed space-y-4 ${isDarkMode ? 'bg-black/40 border-slate-800' : 'bg-slate-100 border-slate-200'}`}>
-                  <div className="flex justify-between items-center border-b border-slate-800 pb-3">
-                    <span className="text-[10px] font-black uppercase opacity-40">Viral Caption</span>
-                    <button onClick={() => copyToClipboard(`${s.caption}\n\n${s.hashtags}`, `c-${idx}`)} className="text-[10px] font-black uppercase text-indigo-500 flex items-center gap-1">
-                      {copyStatus[`c-${idx}`] ? 'TERSALIN' : 'SALIN SEMUA'}
-                    </button>
-                  </div>
-                  <p className={`text-sm font-medium ${theme.subText}`}>{s.caption}</p>
-                  <p className="text-xs font-mono text-indigo-400">{s.hashtags}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-
-      {/* Settings Modal - Dioptimalkan untuk User Gaptek */}
-      {showSettings && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-md z-[100] flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className={`${theme.card} w-full max-w-md rounded-[3rem] p-8 md:p-10 border-2 relative shadow-[0_0_50px_rgba(99,102,241,0.2)] overflow-hidden`}>
-            <div className="absolute -top-24 -right-24 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none" />
-            <button onClick={() => setShowSettings(false)} className="absolute right-8 top-8 text-slate-500 hover:text-indigo-500 transition-colors z-10"><X size={24}/></button>
-            <div className="relative z-10">
-              <div className="mb-8">
-                <h3 className="font-black text-2xl italic uppercase mb-1 text-indigo-500">Aktivasi Mesin AI</h3>
-                <p className="text-[10px] font-bold uppercase tracking-widest opacity-60">Masukkan Kunci Lisensi (API Key) Anda</p>
-              </div>
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest opacity-50 block flex items-center gap-2">
-                    <Key size={12} className="text-indigo-500"/> Kode API Key
-                  </label>
-                  <input 
-                    type="password" 
-                    className={`w-full rounded-2xl p-4 text-sm font-mono border-2 focus:border-indigo-500 outline-none transition-all ${theme.input}`} 
-                    placeholder="Contoh: AIzaSyB..." 
-                    value={apiKey} 
-                    onChange={e => setApiKey(e.target.value)} 
-                  />
-                  <p className="text-[9px] text-slate-500 italic">*Kode ini diperlukan agar AI bisa berpikir dan menulis script untuk Anda.</p>
-                </div>
-                <div className={`p-5 rounded-2xl border ${isDarkMode ? 'bg-indigo-900/20 border-indigo-500/30' : 'bg-indigo-50 border-indigo-200'}`}>
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="p-1.5 bg-indigo-500 rounded-lg shadow-lg shadow-indigo-500/40">
-                      <Sparkles size={12} className="text-white" />
-                    </div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-indigo-500">Panduan Untuk Pemula</span>
-                  </div>
-                  <ol className={`text-[11px] space-y-2 pl-4 list-decimal marker:text-indigo-500 font-medium ${isDarkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    <li>Klik tombol <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noreferrer" className="text-indigo-500 underline font-bold inline-flex items-center gap-1">Ambil Kunci Gratis <ExternalLink size={10}/></a></li>
-                    <li>Klik <b>"Create API Key"</b> di halaman tersebut.</li>
-                    <li>Salin (Copy) kode yang muncul.</li>
-                    <li>Tempel (Paste) di kolom atas, lalu klik Simpan.</li>
-                  </ol>
-                </div>
-                <button 
-                  onClick={() => saveApiKey(apiKey)} 
-                  className="w-full bg-indigo-600 py-4 rounded-2xl font-black uppercase text-xs tracking-[0.2em] text-white shadow-xl hover:bg-indigo-500 active:scale-95 transition-all flex items-center justify-center gap-2"
-                >
-                  <CheckCircle2 size={16} /> Aktifkan Sekarang
+                
+                <button onclick="generateRandomHook()" id="shuffle-btn" class="px-10 py-5 hook-gradient rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-indigo-500/40 hover:brightness-110 active:scale-95 transition-all text-white text-center">
+                    <i class="fas fa-random mr-3"></i> Acak Hook Elite
                 </button>
-              </div>
             </div>
-          </div>
         </div>
-      )}
-    </div>
-  );
-};
 
-export default App;
+        <!-- Filters -->
+        <div class="glass-card p-6 md:p-8 rounded-[2rem] mb-12 border-white/5">
+            <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-4 ml-1">Kategori Strategi:</span>
+            <div class="flex flex-wrap gap-2 no-scrollbar overflow-x-auto" id="cat-filters"></div>
+        </div>
+
+        <!-- Content Area -->
+        <div id="hook-list-container" class="grid grid-cols-1 gap-4 md:gap-6"></div>
+
+        <!-- Footer -->
+        <footer class="mt-20 opacity-40 text-center">
+            <div class="font-black text-[10px] uppercase tracking-[0.5em] mb-2">KAMUSHOOK • ELITE 99 EDITION</div>
+            <div class="text-[9px] uppercase tracking-[0.2em] text-slate-400">Kurasi eksklusif untuk branding jepengonten</div>
+        </footer>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white text-black px-8 py-3 rounded-full shadow-2xl opacity-0 transition-all duration-300 pointer-events-none z-[60] font-black text-[10px] uppercase tracking-widest">
+        Salin Berhasil!
+    </div>
+
+    <script>
+        // Database 99 Hook Terpilih (Eksklusif)
+        const database = [
+            // STORYSELLING
+            { f: "POV: Anda baru sadar kalau X adalah kunci untuk Y.", c: "StorySelling" },
+            { f: "Ini rahasia X yang bikin Y jadi kenyataan dalam Z.", c: "StorySelling" },
+            { f: "Gimana saya nemuin X dan dapet Y cuma dalam Z.", c: "StorySelling" },
+            { f: "Perjalanan dari nol X sampe punya Y dalam Z.", c: "StorySelling" },
+            { f: "Dulu saya benci X, tapi sekarang Y gara-gara itu.", c: "StorySelling" },
+            { f: "Kesalahan terbesar saya waktu nyoba Y: Gak pake X.", c: "StorySelling" },
+            { f: "Satu momen yang ngerubah segalanya buat X saya.", c: "StorySelling" },
+            { f: "Cara 'curang' dapet Y pake metode X rahasia.", c: "StorySelling" },
+            { f: "POV: Dibalik layar gimana X bisa ngasilin Y yang Z.", c: "StorySelling" },
+            { f: "Cerita jujur kenapa X lebih penting dari sekadar Y.", c: "StorySelling" },
+            { f: "Saya hampir menyerah di X, sampai akhirnya ketemu Y.", c: "StorySelling" },
+            { f: "Inilah alasan kenapa saya berhenti melakukan X demi Y.", c: "StorySelling" },
+            { f: "3 tahun saya belajar X, ini ringkasan Y buat kamu.", c: "StorySelling" },
+            { f: "Rahasia besar di balik suksesnya X mencapai Y.", c: "StorySelling" },
+            { f: "Nggak ada yang tahu kalau X sebenarnya bermula dari Y.", c: "StorySelling" },
+            { f: "Momen 'Aha!' yang bikin strategi X saya jadi Y.", c: "StorySelling" },
+            { f: "Cara saya mengubah kegagalan X jadi kemenangan Y.", c: "StorySelling" },
+
+            // NEGATIVE
+            { f: "Jangan pernah coba X sebelum tahu rahasia Y ini.", c: "Negative" },
+            { f: "Berhenti pakai X, gunakan Y untuk hasil Z.", c: "Negative" },
+            { f: "X Anda akan gagal total jika mengabaikan Y.", c: "Negative" },
+            { f: "Kenapa X adalah alasan utama kamu belum dapet Y.", c: "Negative" },
+            { f: "Stop buang-buang waktu di X kalau mau Y.", c: "Negative" },
+            { f: "Bahaya laten X yang bisa ngerusak rencana Y kamu.", c: "Negative" },
+            { f: "Jangan dengerin orang yang bilang X itu bagus buat Y.", c: "Negative" },
+            { f: "Eksperimen X saya gagal total, ini pelajaran buat Y.", c: "Negative" },
+            { f: "Kenapa Y gak bakal dateng kalo kamu masih X.", c: "Negative" },
+            { f: "Kalau kamu masih X, mending lupakan mimpi dapet Y.", c: "Negative" },
+            { f: "X adalah musuh tersembunyi bagi kesuksesan Y kamu.", c: "Negative" },
+            { f: "Hati-hati! X bisa menghancurkan progress Y dalam sekejap.", c: "Negative" },
+            { f: "Mitos X yang harus kamu buang kalau mau dapet Y.", c: "Negative" },
+            { f: "Kenapa cara lama X sudah tidak relevan lagi untuk Y.", c: "Negative" },
+            { f: "Kebohongan industri X yang selama ini menutupi Y.", c: "Negative" },
+            { f: "Jangan sampai kamu terjebak di lubang X yang sama dengan Y.", c: "Negative" },
+            { f: "Satu kesalahan X ini bikin Y kamu boncos terus.", c: "Negative" },
+
+            // BOLD
+            { f: "X adalah kebohongan, rahasia aslinya adalah Y.", c: "Bold" },
+            { f: "Gak perlu X buat dapetin Y, cukup lakukan Z.", c: "Bold" },
+            { f: "X ini bakal bikin Y kamu naik 10x lipat dalam Z.", c: "Bold" },
+            { f: "Formula X ini ilegal di beberapa tempat buat dapet Y.", c: "Bold" },
+            { f: "Lupakan Z, X adalah raja baru buat urusan Y.", c: "Bold" },
+            { f: "Cuma butuh X buat ngalahin semua kompetitor Y kamu.", c: "Bold" },
+            { f: "Prediksi X: Y bakal meledak di tahun ini.", c: "Bold" },
+            { f: "Semua orang salah soal X, kenyataannya adalah Y.", c: "Bold" },
+            { f: "X adalah jalan ninja paling cepet buat dapet Y.", c: "Bold" },
+            { f: "Berhenti jadi medioker di X, mulai kuasai Y.", c: "Bold" },
+            { f: "X adalah satu-satunya alat yang kamu butuh buat Y.", c: "Bold" },
+            { f: "Tanpa X, kamu cuma buang-buang waktu di Y.", c: "Bold" },
+            { f: "Saya berani jamin, X akan merubah cara kamu melihat Y.", c: "Bold" },
+            { f: "Selamat tinggal X, selamat datang era baru Y.", c: "Bold" },
+            { f: "X bukan lagi pilihan, tapi keharusan buat dapet Y.", c: "Bold" },
+            { f: "Inilah puncak dari segala strategi X untuk Y.", c: "Bold" },
+            { f: "X adalah senjata rahasia yang gak ingin orang lain tahu.", c: "Bold" },
+
+            // CURIOSITY GAP
+            { f: "Ada alasan kenapa saya gak pernah pake X buat Y.", c: "Curiosity" },
+            { f: "Satu benda di X ini bikin Y kamu jauh lebih Z.", c: "Curiosity" },
+            { f: "Jangan buka X ini kalau kamu belum siap dapet Y.", c: "Curiosity" },
+            { f: "Apa hubungannya X sama keberhasilan Y kamu?", c: "Curiosity" },
+            { f: "Rahasia tersembunyi X yang gak pernah dibahas di Y.", c: "Curiosity" },
+            { f: "Ternyata X cuma mitos, yang beneran itu Y.", c: "Curiosity" },
+            { f: "Kenapa orang pinter pake X buat nangkis Y?", c: "Curiosity" },
+            { f: "Benda receh X ini ternyata kunci Y yang Z.", c: "Curiosity" },
+            { f: "Gak sengaja nemu X, eh malah dapet Y dalam Z.", c: "Curiosity" },
+            { f: "Stop scroll! Kamu harus liat X ini sebelum Y.", c: "Curiosity" },
+            { f: "Sesuatu yang besar akan terjadi di X jika kamu Y.", c: "Curiosity" },
+            { f: "Inilah penemuan X yang paling mengejutkan tentang Y.", c: "Curiosity" },
+            { f: "Kenapa X bisa bekerja padahal semua orang bilang Y?", c: "Curiosity" },
+            { f: "Ada satu rahasia di X yang bikin Y jadi gampang banget.", c: "Curiosity" },
+            { f: "Siapa sangka X adalah jawaban dari masalah Y kamu.", c: "Curiosity" },
+            { f: "Teka-teki X akhirnya terjawab lewat metode Y ini.", c: "Curiosity" },
+
+            // LISTICLE
+            { f: "3 Tanda kamu butuh X supaya Y lebih Z.", c: "Listicle" },
+            { f: "Top 5 cara dapet Y tanpa harus ribet X.", c: "Listicle" },
+            { f: "Checklist X wajib buat kamu yang mau Y.", c: "Listicle" },
+            { f: "7 Kesalahan X yang bikin Y kamu hancur.", c: "Listicle" },
+            { f: "Cuma ada 2 tipe orang: X atau Y. Kamu yang mana?", c: "Listicle" },
+            { f: "Step-by-step X biar Y kamu auto-Z.", c: "Listicle" },
+            { f: "Rekomendasi X buat dapetin Y terbaik tahun ini.", c: "Listicle" },
+            { f: "4 Alasan kenapa X lebih baik dari Y untuk Z.", c: "Listicle" },
+            { f: "Daftar X rahasia para pro buat kuasai Y.", c: "Listicle" },
+            { f: "Bongkar 3 mitos X yang bikin kamu gagal Y.", c: "Listicle" },
+            { f: "5 Tool X yang bakal bikin Y kamu jadi autopilot.", c: "Listicle" },
+            { f: "3 Kebiasaan X yang wajib dihindari demi Y.", c: "Listicle" },
+            { f: "Urutan X paling efektif untuk mencapai Y.", c: "Listicle" },
+            { f: "Daftar belanja X buat kamu yang mau mulai Y.", c: "Listicle" },
+            { f: "6 Langkah mudah X untuk dapet Y secara instan.", c: "Listicle" },
+            { f: "10 Rahasia X yang cuma diketahui oleh pakar Y.", c: "Listicle" },
+
+            // COMPARISON
+            { f: "X vs Y: Mana yang lebih cepet bikin Z?", c: "Comparison" },
+            { f: "Pilih X atau Y? Baca ini dulu sebelum nyesel.", c: "Comparison" },
+            { f: "Kenapa X menang telak lawan Y dalam hal Z.", c: "Comparison" },
+            { f: "Jangan beli X, mending pake Y buat dapet Z.", c: "Comparison" },
+            { f: "Dulu saya pake X, tapi sekarang pindah ke Y.", c: "Comparison" },
+            { f: "Bedanya X murahan sama Y yang beneran Z.", c: "Comparison" },
+            { f: "Duel maut: X vs Y buat urusan Z.", c: "Comparison" },
+            { f: "Kalau disuruh milih X atau Y, saya pilih Z.", c: "Comparison" },
+            { f: "Rahasia kenapa X lebih mahal dari Y tapi lebih Z.", c: "Comparison" },
+            { f: "X itu bagus, tapi Y adalah level selanjutnya.", c: "Comparison" },
+            { f: "Perbandingan jujur: X dan Y dalam mencapai Z.", c: "Comparison" },
+            { f: "Mana yang lebih worth it? X atau Y buat Z kamu.", c: "Comparison" },
+            { f: "Kenapa saya pilih X padahal Y lebih populer.", c: "Comparison" },
+            { f: "X adalah masa lalu, Y adalah masa depan Z.", c: "Comparison" },
+            { f: "Debat panas X vs Y: Inilah pemenangnya untuk Z.", c: "Comparison" },
+            { f: "X memberikan Y, tapi Z memberikan segalanya.", c: "Comparison" }
+        ];
+
+        let activeCat = "All";
+
+        function formatXYZ(text) {
+            return text.replace(/X/g, `<span class="var-badge">X</span>`)
+                       .replace(/Y/g, `<span class="var-badge">Y</span>`)
+                       .replace(/Z/g, `<span class="var-badge">Z</span>`);
+        }
+
+        function renderFilters() {
+            const cats = ["All", "StorySelling", "Bold", "Negative", "Curiosity", "Listicle", "Comparison"];
+            document.getElementById('cat-filters').innerHTML = cats.map(c => `
+                <button onclick="setCat('${c}')" class="whitespace-nowrap px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all ${activeCat === c ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg' : 'bg-slate-900/50 border-slate-800 text-slate-500 hover:text-white'}">
+                    ${c}
+                </button>
+            `).join('');
+        }
+
+        function renderList() {
+            const filtered = database.filter(t => activeCat === "All" || t.c === activeCat);
+            document.getElementById('hook-list-container').innerHTML = filtered.map(t => `
+                <div onclick="copyHook('${t.f}')" class="hook-item-card p-6 md:p-8 rounded-[1.8rem] group relative overflow-hidden animate__animated animate__fadeIn">
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[8px] font-black uppercase tracking-[0.2em] text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-md border border-indigo-500/20">${t.c}</span>
+                            <span class="text-[10px] text-slate-600 font-bold group-hover:text-indigo-400 transition-colors uppercase">Tap to Copy</span>
+                        </div>
+                        <div class="text-lg md:text-xl font-bold text-white leading-relaxed">${formatXYZ(t.f)}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function setCat(c) {
+            activeCat = c;
+            renderFilters();
+            renderList();
+        }
+
+        function generateRandomHook() {
+            const display = document.getElementById('random-hook-display');
+            display.classList.add('animate__animated', 'animate__fadeOut');
+            setTimeout(() => {
+                const random = database[Math.floor(Math.random() * database.length)];
+                display.innerHTML = formatXYZ(random.f);
+                display.classList.remove('animate__fadeOut');
+                display.classList.add('animate__fadeIn');
+            }, 300);
+        }
+
+        function copyHook(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            
+            const toast = document.getElementById('toast');
+            toast.style.opacity = '1';
+            toast.style.bottom = '40px';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.bottom = '32px';
+            }, 1500);
+        }
+
+        window.onload = () => {
+            renderFilters();
+            renderList();
+        };
+    </script>
+</body>
+</html>
+
