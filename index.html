@@ -3,12 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KamusHook - 99 Database Hook by Jepengonten</title>
-    
-    <!-- Meta Tags untuk Branding & SEO -->
-    <meta name="description" content="99 formula hook konten viral pilihan. Database hook eksklusif dari jepengonten.">
-    <meta property="og:title" content="KamusHook - 99 Hook Elite">
-    <meta property="og:description" content="99 Strategi Hook terpilih untuk melejitkan konten kamu. Gratis!">
+    <title>KamusHook - 99 Formula by Jepengonten</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -19,7 +14,7 @@
         :root {
             --primary: #6366f1;
             --secondary: #a855f7;
-            --bg-dark: #0b0f1a;
+            --bg-dark: #0b1120;
         }
 
         body {
@@ -27,263 +22,323 @@
             background-color: var(--bg-dark);
             color: #f1f5f9;
             background-image: 
-                radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+                radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(168, 85, 247, 0.1) 0%, transparent 40%);
             background-attachment: fixed;
-            -webkit-tap-highlight-color: transparent;
         }
 
         .glass-card {
-            background: rgba(20, 26, 42, 0.6);
+            background: rgba(17, 24, 39, 0.75);
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
         }
 
-        .hook-gradient {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .hook-title {
+            background: linear-gradient(to right, #fff 30%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .var-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            background: rgba(99, 102, 241, 0.2);
+            padding: 1px 7px;
+            background: rgba(99, 102, 241, 0.25);
             border: 1px solid rgba(99, 102, 241, 0.5);
-            color: #818cf8;
-            border-radius: 8px;
+            color: #c7d2fe;
+            border-radius: 5px;
             font-weight: 800;
-            margin: 0 4px;
-            font-size: 0.85rem;
+            margin: 0 3px;
+            text-transform: uppercase;
         }
 
-        .hook-item-card {
-            transition: all 0.3s ease;
-            background: rgba(25, 33, 53, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            cursor: pointer;
+        .niche-tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            color: #94a3b8;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .hook-item-card:hover {
-            border-color: var(--primary);
-            background: rgba(30, 41, 70, 0.6);
+        .hashtag-id {
+            font-family: 'Monaco', monospace;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
         }
 
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .btn-action {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .btn-action:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b1120; }
+        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #334155; }
     </style>
 </head>
-<body class="pb-24">
+<body class="pb-20">
 
-    <div class="max-w-4xl mx-auto px-6 pt-12">
+    <div class="max-w-5xl mx-auto px-6 pt-20">
         <!-- Header -->
-        <header class="mb-10 text-center animate__animated animate__fadeIn">
-            <h1 class="text-6xl md:text-8xl font-black mb-1 tracking-tighter uppercase italic">
-                KAMUS<span class="text-transparent bg-clip-text hook-gradient">HOOK</span>
+        <header class="text-center mb-20 animate__animated animate__fadeIn">
+            <h1 class="text-7xl md:text-9xl font-black mb-4 tracking-tighter uppercase italic text-white">
+                KAMUS<span class="hook-title">HOOK</span>
             </h1>
-            <p class="text-indigo-400 font-bold uppercase text-[10px] tracking-[0.4em] mb-4">
-                99 database hook by jepengonten
-            </p>
+            <div class="inline-block relative">
+                <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full blur opacity-25"></div>
+                <div class="relative px-8 py-2 bg-slate-900 rounded-full border border-white/10">
+                    <p class="text-[11px] text-indigo-300 font-bold uppercase tracking-[0.4em]">
+                        99 formula hook by jepengonten
+                    </p>
+                </div>
+            </div>
         </header>
 
-        <!-- Shuffle Area -->
-        <div class="glass-card rounded-[2.5rem] mb-10 overflow-hidden relative border-white/5">
-            <div class="p-8 md:p-12 text-center min-h-[250px] flex flex-col justify-center items-center">
-                <div id="random-hook-display" class="text-2xl md:text-4xl font-extrabold text-white leading-tight mb-10 tracking-tight">
-                    Temukan 1 dari 99 strategi viral...
+        <!-- Stats & Filter Bar -->
+        <div class="glass-card p-6 rounded-[2rem] mb-12 flex flex-col md:flex-row items-center justify-between gap-6 border-white/10">
+            <div class="flex items-center gap-8">
+                <div>
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Total Formula</p>
+                    <p class="text-2xl font-black text-white">99 <span class="text-indigo-500 text-sm">Hooks</span></p>
                 </div>
-                
-                <button onclick="generateRandomHook()" id="shuffle-btn" class="px-10 py-5 hook-gradient rounded-2xl font-black text-xs uppercase tracking-widest shadow-2xl shadow-indigo-500/40 hover:brightness-110 active:scale-95 transition-all text-white text-center">
-                    <i class="fas fa-random mr-3"></i> Acak Hook Elite
+                <div class="h-10 w-[1px] bg-white/10 hidden md:block"></div>
+                <div>
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Status</p>
+                    <p class="text-xs font-bold text-emerald-400 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Verified Archive
+                    </p>
+                </div>
+            </div>
+            
+            <div class="flex gap-3 w-full md:w-auto">
+                <select id="niche-filter" onchange="renderHooks()" class="flex-1 md:w-48 bg-slate-800 border border-white/5 rounded-xl px-4 py-3 text-xs font-bold text-white focus:outline-none focus:border-indigo-500 transition-all">
+                    <option value="All">Semua Niche</option>
+                    <option value="Personal">Personal Branding</option>
+                    <option value="Digital">Digital Product</option>
+                    <option value="Edukasi">Edukasi</option>
+                    <option value="Beauty">Beauty/Skincare</option>
+                    <option value="Fisik">Produk Fisik</option>
+                </select>
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="p-3 bg-white/5 border border-white/10 rounded-xl text-white hover:bg-white/10 transition-all">
+                    <i class="fas fa-arrow-up"></i>
                 </button>
             </div>
         </div>
 
-        <!-- Filters -->
-        <div class="glass-card p-6 md:p-8 rounded-[2rem] mb-12 border-white/5">
-            <span class="text-[10px] font-black text-slate-500 uppercase tracking-widest block mb-4 ml-1">Kategori Strategi:</span>
-            <div class="flex flex-wrap gap-2 no-scrollbar overflow-x-auto" id="cat-filters"></div>
+        <!-- Filter Kategori Arsitektur -->
+        <div id="cat-tabs" class="flex flex-wrap gap-2 mb-10 justify-center"></div>
+
+        <!-- Kamus List -->
+        <div id="hook-container" class="grid grid-cols-1 gap-6">
+            <!-- Items injected via JS -->
         </div>
 
-        <!-- Content Area -->
-        <div id="hook-list-container" class="grid grid-cols-1 gap-4 md:gap-6"></div>
-
-        <!-- Footer -->
-        <footer class="mt-20 opacity-40 text-center">
-            <div class="font-black text-[10px] uppercase tracking-[0.5em] mb-2">KAMUSHOOK • ELITE 99 EDITION</div>
-            <div class="text-[9px] uppercase tracking-[0.2em] text-slate-400">Kurasi eksklusif untuk branding jepengonten</div>
+        <footer class="mt-32 text-center">
+            <p class="text-[10px] font-bold text-slate-600 uppercase tracking-[0.5em] mb-4 text-center">End of KamusHook Archive</p>
+            <div class="h-[1px] w-20 bg-slate-800 mx-auto mb-8"></div>
         </footer>
     </div>
 
-    <!-- Notification Toast -->
-    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-white text-black px-8 py-3 rounded-full shadow-2xl opacity-0 transition-all duration-300 pointer-events-none z-[60] font-black text-[10px] uppercase tracking-widest">
-        Salin Berhasil!
+    <!-- Toast Copy -->
+    <div id="toast" class="fixed bottom-10 left-1/2 -translate-x-1/2 bg-white text-black px-8 py-3 rounded-full font-black text-[10px] uppercase tracking-widest opacity-0 transition-all duration-300 pointer-events-none z-[100] shadow-2xl">
+        Formula Disalin!
     </div>
 
     <script>
-        // Database 99 Hook Terpilih (Eksklusif)
         const database = [
-            // STORYSELLING
-            { f: "POV: Anda baru sadar kalau X adalah kunci untuk Y.", c: "StorySelling" },
-            { f: "Ini rahasia X yang bikin Y jadi kenyataan dalam Z.", c: "StorySelling" },
-            { f: "Gimana saya nemuin X dan dapet Y cuma dalam Z.", c: "StorySelling" },
-            { f: "Perjalanan dari nol X sampe punya Y dalam Z.", c: "StorySelling" },
-            { f: "Dulu saya benci X, tapi sekarang Y gara-gara itu.", c: "StorySelling" },
-            { f: "Kesalahan terbesar saya waktu nyoba Y: Gak pake X.", c: "StorySelling" },
-            { f: "Satu momen yang ngerubah segalanya buat X saya.", c: "StorySelling" },
-            { f: "Cara 'curang' dapet Y pake metode X rahasia.", c: "StorySelling" },
-            { f: "POV: Dibalik layar gimana X bisa ngasilin Y yang Z.", c: "StorySelling" },
-            { f: "Cerita jujur kenapa X lebih penting dari sekadar Y.", c: "StorySelling" },
-            { f: "Saya hampir menyerah di X, sampai akhirnya ketemu Y.", c: "StorySelling" },
-            { f: "Inilah alasan kenapa saya berhenti melakukan X demi Y.", c: "StorySelling" },
-            { f: "3 tahun saya belajar X, ini ringkasan Y buat kamu.", c: "StorySelling" },
-            { f: "Rahasia besar di balik suksesnya X mencapai Y.", c: "StorySelling" },
-            { f: "Nggak ada yang tahu kalau X sebenarnya bermula dari Y.", c: "StorySelling" },
-            { f: "Momen 'Aha!' yang bikin strategi X saya jadi Y.", c: "StorySelling" },
-            { f: "Cara saya mengubah kegagalan X jadi kemenangan Y.", c: "StorySelling" },
+            // STORYSELLING (1-17)
+            { id: 1, f: "POV: Anda baru sadar kalau X adalah kunci untuk Y.", c: "StorySelling", i: "Membangun empati instan dengan menempatkan audiens sebagai tokoh utama.", n: "Personal" },
+            { id: 2, f: "Dulu saya benci X, sampai akhirnya Y mengubah segalanya.", c: "StorySelling", i: "Metode Enemy-to-Ally. Menciptakan kedekatan lewat kerentanan masa lalu.", n: "Digital" },
+            { id: 3, f: "Gimana saya ubah kegagalan X jadi omzet Y dalam Z hari.", c: "StorySelling", i: "The Transformation. Bukti nyata hasil lebih kuat dari sekadar janji.", n: "Digital" },
+            { id: 4, f: "Satu nasihat X dari Y yang merubah hidup saya.", c: "StorySelling", i: "Wisdom Transfer. Meminjam otoritas tokoh besar untuk validasi cerita.", n: "Personal" },
+            { id: 5, f: "Saya nemuin cara dapet Y tanpa harus melakukan X.", c: "StorySelling", i: "Removing Friction. Menghapus hambatan terbesar yang ditakuti audiens.", n: "Digital" },
+            { id: 6, f: "Ini alasan kenapa saya berhenti melakukan X demi Y.", c: "StorySelling", i: "The Pivot. Menunjukkan keberanian mengambil langkah berbeda.", n: "Personal" },
+            { id: 7, f: "Jangan pernah meremehkan X kalau kamu mau dapet Y.", c: "StorySelling", i: "The Hidden Gem. Memberi nilai pada hal kecil yang sering diabaikan.", n: "All" },
+            { id: 8, f: "Efek domino dari melakukan X ternyata bikin Y meledak.", c: "StorySelling", i: "The Ripple Effect. Menjelaskan logisnya sebuah hasil besar.", n: ["Edukasi"] },
+            { id: 9, f: "Saya hampir menyerah di X, sampai Y datang menolong.", c: "StorySelling", i: "Vulnerability. Membangun trust lewat kejujuran di masa sulit.", n: "Personal" },
+            { id: 10, f: "Ini rahasia X yang nggak pernah saya bagiin sebelumnya.", c: "StorySelling", i: "Intimacy. Memberikan rasa eksklusivitas kepada audiens setia.", n: "Digital" },
+            { id: 11, f: "Kalau saya harus mulai dari 0 tanpa X, saya bakal lakuin Y.", c: "StorySelling", i: "Starting Over. Memberikan roadmap praktis bagi pemula.", n: "Edukasi" },
+            { id: 12, f: "Detik-detik saat X merubah cara pandang saya soal Y.", c: "StorySelling", i: "The Epiphany. Momen 'Aha!' yang membuat audiens penasaran.", n: "Personal" },
+            { id: 13, f: "Ternyata X bukan masalahnya, Y lah yang bikin Z macet.", c: "StorySelling", i: "The Real Problem. Menyingkap akar masalah yang salah didiagnosa.", n: "Digital" },
+            { id: 14, f: "Saya dapet X cuma dengan modal Y dan bantuan Z.", c: "StorySelling", i: "The Resourceful. Menunjukkan efisiensi dalam mencapai target.", n: "All" },
+            { id: 15, f: "Gara-gara X, rencana Y saya berantakan, tapi hasilnya Z.", c: "StorySelling", i: "The Plot Twist. Ketegangan cerita yang berakhir dengan kesuksesan.", n: "Personal" },
+            { id: 16, f: "Cerita di balik X yang bikin orang-orang dapet Y.", c: "StorySelling", i: "Behind the Scene. Memberikan konteks pada sebuah produk/jasa.", n: "Fisik" },
+            { id: 17, f: "Pesan terakhir dari X sebelum saya sukses di Y.", c: "StorySelling", i: "Legacy. Memberikan kesan mendalam pada sebuah pembelajaran.", n: "Personal" },
 
-            // NEGATIVE
-            { f: "Jangan pernah coba X sebelum tahu rahasia Y ini.", c: "Negative" },
-            { f: "Berhenti pakai X, gunakan Y untuk hasil Z.", c: "Negative" },
-            { f: "X Anda akan gagal total jika mengabaikan Y.", c: "Negative" },
-            { f: "Kenapa X adalah alasan utama kamu belum dapet Y.", c: "Negative" },
-            { f: "Stop buang-buang waktu di X kalau mau Y.", c: "Negative" },
-            { f: "Bahaya laten X yang bisa ngerusak rencana Y kamu.", c: "Negative" },
-            { f: "Jangan dengerin orang yang bilang X itu bagus buat Y.", c: "Negative" },
-            { f: "Eksperimen X saya gagal total, ini pelajaran buat Y.", c: "Negative" },
-            { f: "Kenapa Y gak bakal dateng kalo kamu masih X.", c: "Negative" },
-            { f: "Kalau kamu masih X, mending lupakan mimpi dapet Y.", c: "Negative" },
-            { f: "X adalah musuh tersembunyi bagi kesuksesan Y kamu.", c: "Negative" },
-            { f: "Hati-hati! X bisa menghancurkan progress Y dalam sekejap.", c: "Negative" },
-            { f: "Mitos X yang harus kamu buang kalau mau dapet Y.", c: "Negative" },
-            { f: "Kenapa cara lama X sudah tidak relevan lagi untuk Y.", c: "Negative" },
-            { f: "Kebohongan industri X yang selama ini menutupi Y.", c: "Negative" },
-            { f: "Jangan sampai kamu terjebak di lubang X yang sama dengan Y.", c: "Negative" },
-            { f: "Satu kesalahan X ini bikin Y kamu boncos terus.", c: "Negative" },
+            // BOLD (18-34)
+            { id: 18, f: "X adalah kebohongan terbesar yang kamu percayai.", c: "Bold", i: "Polarisasi. Menantang status quo untuk menarik atensi tajam.", n: "All" },
+            { id: 19, f: "Cara paling cepat dapet Y adalah dengan melupakan X.", c: "Bold", i: "Paradigm Shift. Memberikan instruksi yang berlawanan dengan umum.", n: "Digital" },
+            { id: 20, f: "90% orang gagal di X karena melakukan Y.", c: "Bold", i: "Authority Statement. Menunjuk kesalahan fatal mayoritas orang.", n: "All" },
+            { id: 21, f: "X itu cuma mitos, kenyataan pahitnya adalah Y.", c: "Bold", i: "Truth Bomb. Membangun trust lewat kejujuran yang brutal.", n: "Edukasi" },
+            { id: 22, f: "Kamu nggak butuh X buat dapet Y, kamu cuma butuh Z.", c: "Bold", i: "Simplification. Menawarkan jalan pintas yang logis.", n: "All" },
+            { id: 23, f: "X adalah alasan kenapa kamu tetep stuck di Y.", c: "Bold", i: "Identifying Blockage. Memberi tahu hambatan utama kesuksesan.", n: "Personal" },
+            { id: 24, f: "Berhenti belajar X kalau kamu nggak paham Y.", c: "Bold", i: "Prerequisite. Memberikan filter pada audiens yang serius.", n: "Edukasi" },
+            { id: 25, f: "Investasi di X adalah cara tercepat buat rugi di Y.", c: "Bold", i: "Shock Factor. Memberikan peringatan keras yang berlawanan.", n: "Digital" },
+            { id: 26, f: "X nggak akan pernah bisa gantiin Y untuk urusan Z.", c: "Bold", i: "The Comparison. Menegaskan posisi satu elemen yang absolut.", n: "All" },
+            { id: 27, f: "Cuma orang malas yang bilang X itu susah buat Y.", c: "Bold", i: "Call-out. Menantang ego audiens untuk membuktikan sebaliknya.", n: "Personal" },
+            { id: 28, f: "X adalah satu-satunya jalan buat kamu dapet Y.", c: "Bold", i: "Monopoly of Truth. Memposisikan diri sebagai solusi tunggal.", n: "Digital" },
+            { id: 29, f: "Lupakan X, dunia sekarang bergerak ke arah Y.", c: "Bold", i: "The Trendsetter. Menunjukkan relevansi dan masa depan.", n: "All" },
+            { id: 30, f: "X itu sampah kalau kamu nggak pake Y buat Z.", c: "Bold", i: "Extreme Critique. Menggunakan bahasa kuat untuk memicu reaksi.", n: "All" },
+            { id: 31, f: "Semua influencer X bohong soal hasil Y.", c: "Bold", i: "Whistleblower. Memposisikan diri sebagai pembela kebenaran.", n: "Personal" },
+            { id: 32, f: "X adalah rahasia orang kaya yang disembunyikan dari Y.", c: "Bold", i: "Gatekeeping. Memberikan akses pada informasi 'terlarang'.", n: "Digital" },
+            { id: 33, f: "Nggak ada gunanya punya X kalau Y kamu masih Z.", c: "Bold", i: "The Baseline. Menekankan pada fondasi sebelum tools.", n: "All" },
+            { id: 34, f: "X bakal mati di tahun 2024, bersiaplah buat Y.", c: "Bold", i: "Future Fear. Menciptakan urgensi berdasarkan waktu.", n: "Edukasi" },
 
-            // BOLD
-            { f: "X adalah kebohongan, rahasia aslinya adalah Y.", c: "Bold" },
-            { f: "Gak perlu X buat dapetin Y, cukup lakukan Z.", c: "Bold" },
-            { f: "X ini bakal bikin Y kamu naik 10x lipat dalam Z.", c: "Bold" },
-            { f: "Formula X ini ilegal di beberapa tempat buat dapet Y.", c: "Bold" },
-            { f: "Lupakan Z, X adalah raja baru buat urusan Y.", c: "Bold" },
-            { f: "Cuma butuh X buat ngalahin semua kompetitor Y kamu.", c: "Bold" },
-            { f: "Prediksi X: Y bakal meledak di tahun ini.", c: "Bold" },
-            { f: "Semua orang salah soal X, kenyataannya adalah Y.", c: "Bold" },
-            { f: "X adalah jalan ninja paling cepet buat dapet Y.", c: "Bold" },
-            { f: "Berhenti jadi medioker di X, mulai kuasai Y.", c: "Bold" },
-            { f: "X adalah satu-satunya alat yang kamu butuh buat Y.", c: "Bold" },
-            { f: "Tanpa X, kamu cuma buang-buang waktu di Y.", c: "Bold" },
-            { f: "Saya berani jamin, X akan merubah cara kamu melihat Y.", c: "Bold" },
-            { f: "Selamat tinggal X, selamat datang era baru Y.", c: "Bold" },
-            { f: "X bukan lagi pilihan, tapi keharusan buat dapet Y.", c: "Bold" },
-            { f: "Inilah puncak dari segala strategi X untuk Y.", c: "Bold" },
-            { f: "X adalah senjata rahasia yang gak ingin orang lain tahu.", c: "Bold" },
+            // NEGATIVE (35-51)
+            { id: 35, f: "Jangan pernah beli X sebelum nonton video ini.", c: "Negative", i: "Loss Aversion. Orang lebih takut rugi dibanding ingin untung.", n: "Fisik" },
+            { id: 36, f: "X kamu bakal gagal kalau kamu tetep pake Y.", c: "Negative", i: "Warning. Memberikan sinyal bahaya yang harus dihindari.", n: "All" },
+            { id: 37, f: "Stop buang-buang uang buat X, coba rahasia Y ini.", c: "Negative", i: "Efficiency Trigger. Menyerang pain point finansial.", n: "Digital" },
+            { id: 38, f: "Hati-hati sama X yang menjanjikan Y tanpa Z.", c: "Negative", i: "Skepticism. Berperan sebagai pelindung audiens dari scam.", n: "Beauty" },
+            { id: 39, f: "Jangan pake X kalau kamu belum siap dapet Y.", c: "Negative", i: "Reverse Psychology. Membuat audiens merasa tertantang.", n: ["Digital", "Beauty"] },
+            { id: 40, f: "X ini bakal ditarik dari pasar karena Y.", c: "Negative", i: "Scarcity. Memicu rasa takut ketinggalan (FOMO).", n: "Fisik" },
+            { id: 41, f: "Kenapa X nggak mau kamu tau soal rahasia Y?", c: "Negative", i: "Conspiracy. Mengajak audiens 'melawan' rahasia besar.", n: "All" },
+            { id: 42, f: "Buang X kamu sekarang juga kalau nggak mau Y.", c: "Negative", i: "Direct Action. Instruksi keras untuk perubahan instan.", n: "Beauty" },
+            { id: 43, f: "X adalah pembunuh pelan-pelan buat bisnis Y kamu.", c: "Negative", i: "Metaphorical Threat. Menggunakan kata kuat untuk perhatian.", n: "Digital" },
+            { id: 44, f: "Saya nyesel baru tau X setelah buang Y.", c: "Negative", i: "Regret Appeal. Menghindari penyesalan di masa depan.", n: "Personal" },
+            { id: 45, f: "X adalah sampah kalau kamu belinya di Y.", c: "Negative", i: "Quality Control. Memberikan filter tempat/cara akses.", n: "Fisik" },
+            { id: 46, f: "Tolong jangan lakuin X kalau kamu masih mau Y.", c: "Negative", i: "Empathy Warning. Memberikan saran layaknya teman baik.", n: "All" },
+            { id: 47, f: "Inilah kenapa X kamu nggak pernah dapet Y.", c: "Negative", i: "The Reason Why. Mendiagnosa kegagalan audiens secara tepat.", n: "Edukasi" },
+            { id: 48, f: "Pake X bikin Y kamu hancur dalam Z detik.", c: "Negative", i: "Urgency. Menunjukkan kecepatan dampak negatif.", n: "Beauty" },
+            { id: 49, f: "X itu cuma buat orang yang mau dapet Y dengan cara salah.", c: "Negative", i: "Ethical Filter. Membangun integritas brand.", n: "Personal" },
+            { id: 50, f: "Jangan tertipu sama tampilan X, aslinya itu Y.", c: "Negative", i: "The Illusion. Mengungkap kebenaran di balik sampul.", n: "All" },
+            { id: 51, f: "Efek samping X yang nggak pernah dibilang penjual Y.", c: "Negative", i: "Transparency. Membangun trust lewat kejujuran risiko.", n: "Beauty" },
 
-            // CURIOSITY GAP
-            { f: "Ada alasan kenapa saya gak pernah pake X buat Y.", c: "Curiosity" },
-            { f: "Satu benda di X ini bikin Y kamu jauh lebih Z.", c: "Curiosity" },
-            { f: "Jangan buka X ini kalau kamu belum siap dapet Y.", c: "Curiosity" },
-            { f: "Apa hubungannya X sama keberhasilan Y kamu?", c: "Curiosity" },
-            { f: "Rahasia tersembunyi X yang gak pernah dibahas di Y.", c: "Curiosity" },
-            { f: "Ternyata X cuma mitos, yang beneran itu Y.", c: "Curiosity" },
-            { f: "Kenapa orang pinter pake X buat nangkis Y?", c: "Curiosity" },
-            { f: "Benda receh X ini ternyata kunci Y yang Z.", c: "Curiosity" },
-            { f: "Gak sengaja nemu X, eh malah dapet Y dalam Z.", c: "Curiosity" },
-            { f: "Stop scroll! Kamu harus liat X ini sebelum Y.", c: "Curiosity" },
-            { f: "Sesuatu yang besar akan terjadi di X jika kamu Y.", c: "Curiosity" },
-            { f: "Inilah penemuan X yang paling mengejutkan tentang Y.", c: "Curiosity" },
-            { f: "Kenapa X bisa bekerja padahal semua orang bilang Y?", c: "Curiosity" },
-            { f: "Ada satu rahasia di X yang bikin Y jadi gampang banget.", c: "Curiosity" },
-            { f: "Siapa sangka X adalah jawaban dari masalah Y kamu.", c: "Curiosity" },
-            { f: "Teka-teki X akhirnya terjawab lewat metode Y ini.", c: "Curiosity" },
+            // CURIOSITY (52-68)
+            { id: 52, f: "Satu benda di X ini bikin Y kamu jauh lebih Z.", c: "Curiosity", i: "Object focus. Menaruh perhatian pada satu detail kecil.", n: "Fisik" },
+            { id: 53, f: "Ternyata rahasia dapet X cuma butuh Y menit.", c: "Curiosity", i: "Time Efficiency. Janji kemudahan adalah magnet paling kuat.", n: "All" },
+            { id: 54, f: "Gimana cara X dapet Y tanpa modal Z sedikitpun.", c: "Curiosity", i: "The Zero Cost. Menarik perhatian audiens pemula.", n: ["Digital", "Edukasi"] },
+            { id: 55, f: "Saya nemuin fitur X yang bisa otomatis bikin Y.", c: "Curiosity", i: "Automation. Menjanjikan efisiensi kerja.", n: "Digital" },
+            { id: 56, f: "Kenapa orang pinter lebih milih X daripada Y?", c: "Curiosity", i: "Status Appeal. Membuat audiens merasa cerdas kalau menonton.", n: "All" },
+            { id: 57, f: "Taktik licik X buat menguasai pasar Y.", c: "Curiosity", i: "The Maverick. Memberikan cara yang tidak terpikirkan orang lain.", n: "Digital" },
+            { id: 58, f: "Benda X seharga Y ini ternyata gunanya buat Z.", c: "Curiosity", i: "Utility Surprise. Mengungkap fungsi yang tidak terduga.", n: "Fisik" },
+            { id: 59, f: "Hasil eksperimen X selama Z hari di luar dugaan.", c: "Curiosity", i: "Evidence Based. Menarik minat lewat hasil nyata.", n: "Beauty" },
+            { id: 60, f: "Gimana X bisa bantu kamu bebas dari Y selamanya.", c: "Curiosity", i: "Freedom. Menawarkan solusi permanen dari rasa sakit.", n: "Personal" },
+            { id: 61, f: "X ini bakal ngerubah cara kamu liat Y.", c: "Curiosity", i: "Perception. Menjanjikan perubahan sudut pandang baru.", n: "All" },
+            { id: 62, f: "Satu klik di X bisa bikin Y kamu jadi Z.", c: "Curiosity", i: "Frictionless. Menawarkan hasil instan lewat tindakan mudah.", n: "Digital" },
+            { id: 63, f: "Apa jadinya kalau X digabung sama Y buat dapet Z?", c: "Curiosity", i: "The Combo. Eksperimen kombinasi dua hal yang menarik.", n: "All" },
+            { id: 64, f: "Rahasia X yang bikin kompetitor kamu Y.", c: "Curiosity", i: "Competitive Edge. Memberikan keunggulan di pasar.", n: "Digital" },
+            { id: 65, f: "Kenapa X selalu dapet Y sedangkan kamu dapet Z?", c: "Curiosity", i: "The Gap. Menyoroti perbedaan hasil yang bikin penasaran.", n: "All" },
+            { id: 66, f: "Inilah alasan X tetep pake Y padahal udah dapet Z.", c: "Curiosity", i: "Contradiction. Menimbulkan tanya kenapa tokoh besar melakukan itu.", n: "Personal" },
+            { id: 67, f: "Gimana X bisa kasih kamu Y tanpa perlu Z.", c: "Curiosity", i: "Removing Barrier. Menghapus syarat yang dianggap wajib.", n: "All" },
+            { id: 68, f: "Satu trik X dari HP yang bikin Y kamu Z.", c: "Curiosity", i: "Accessibility. Menawarkan solusi dari alat yang sudah ada.", n: "Edukasi" },
 
-            // LISTICLE
-            { f: "3 Tanda kamu butuh X supaya Y lebih Z.", c: "Listicle" },
-            { f: "Top 5 cara dapet Y tanpa harus ribet X.", c: "Listicle" },
-            { f: "Checklist X wajib buat kamu yang mau Y.", c: "Listicle" },
-            { f: "7 Kesalahan X yang bikin Y kamu hancur.", c: "Listicle" },
-            { f: "Cuma ada 2 tipe orang: X atau Y. Kamu yang mana?", c: "Listicle" },
-            { f: "Step-by-step X biar Y kamu auto-Z.", c: "Listicle" },
-            { f: "Rekomendasi X buat dapetin Y terbaik tahun ini.", c: "Listicle" },
-            { f: "4 Alasan kenapa X lebih baik dari Y untuk Z.", c: "Listicle" },
-            { f: "Daftar X rahasia para pro buat kuasai Y.", c: "Listicle" },
-            { f: "Bongkar 3 mitos X yang bikin kamu gagal Y.", c: "Listicle" },
-            { f: "5 Tool X yang bakal bikin Y kamu jadi autopilot.", c: "Listicle" },
-            { f: "3 Kebiasaan X yang wajib dihindari demi Y.", c: "Listicle" },
-            { f: "Urutan X paling efektif untuk mencapai Y.", c: "Listicle" },
-            { f: "Daftar belanja X buat kamu yang mau mulai Y.", c: "Listicle" },
-            { f: "6 Langkah mudah X untuk dapet Y secara instan.", c: "Listicle" },
-            { f: "10 Rahasia X yang cuma diketahui oleh pakar Y.", c: "Listicle" },
+            // LISTICLE (69-83)
+            { id: 69, f: "3 Tool X yang bikin Y kamu jadi autopilot.", c: "Listicle", i: "Digestion. Informasi terstruktur lebih mudah diterima otak.", n: "Digital" },
+            { id: 70, f: "5 Rahasia X buat dapet Y tanpa ribet.", c: "Listicle", i: "Cheat Sheet. Memberikan kumpulan cara singkat padat.", n: "Beauty" },
+            { id: 71, f: "7 Kesalahan X yang bikin Y kamu hancur.", c: "Listicle", i: "Warning List. Memberikan panduan apa yang harus dihindari.", n: "All" },
+            { id: 72, f: "4 Langkah X buat pemula dapet Y.", c: "Listicle", i: "Roadmap. Memberikan urutan yang jelas dan pasti.", n: "Edukasi" },
+            { id: 73, f: "10 Benda X yang wajib ada di Y kamu.", c: "Listicle", i: "Checklist. Menciptakan kebutuhan akan item tertentu.", n: "Fisik" },
+            { id: 74, f: "3 Website X yang bikin kamu pinter Y.", c: "Listicle", i: "Library. Orang suka menyimpan daftar sumber informasi.", n: "Digital" },
+            { id: 75, f: "5 Menit X tiap hari buat hasil Y.", c: "Listicle", i: "Micro-habit. Janji hasil besar dari usaha yang kecil.", n: "Personal" },
+            { id: 76, f: "3 Tanda X kamu bakal dapet Y tahun ini.", c: "Listicle", i: "Prediction. Memberikan validasi positif bagi audiens.", n: "All" },
+            { id: 77, f: "6 Rahasia dapur X yang bikin Y meledak.", c: "Listicle", i: "BTS. Memberikan akses pada proses internal yang eksklusif.", n: "Digital" },
+            { id: 78, f: "4 Alasan kenapa X kamu nggak pernah dapet Y.", c: "Listicle", i: "Diagnosis. Memberikan daftar alasan kegagalan audiens.", n: "All" },
+            { id: 79, f: "3 Cara X paling ampuh buat dapet Y.", c: "Listicle", i: "Selection. Memberikan opsi terbaik dari banyak pilihan.", n: "All" },
+            { id: 80, f: "5 Kesamaan orang sukses di X buat dapet Y.", c: "Listicle", i: "Modelling. Memberikan pola yang bisa ditiru audiens.", n: "Personal" },
+            { id: 81, f: "3 Trik X yang nggak diajarin di sekolah Y.", c: "Listicle", i: "Non-formal. Memberikan kesan ilmu yang praktis dan nyata.", n: "Edukasi" },
+            { id: 82, f: "4 Benda X murah yang bikin Y kelihatan Z.", c: "Listicle", i: "Budgeting. Menawarkan kemewahan dengan harga terjangkau.", n: "Beauty" },
+            { id: 83, f: "3 Pertanyaan X sebelum kamu mulai Y.", c: "Listicle", i: "Reflection. Memaksa audiens berpikir sebelum bertindak.", n: "All" },
 
-            // COMPARISON
-            { f: "X vs Y: Mana yang lebih cepet bikin Z?", c: "Comparison" },
-            { f: "Pilih X atau Y? Baca ini dulu sebelum nyesel.", c: "Comparison" },
-            { f: "Kenapa X menang telak lawan Y dalam hal Z.", c: "Comparison" },
-            { f: "Jangan beli X, mending pake Y buat dapet Z.", c: "Comparison" },
-            { f: "Dulu saya pake X, tapi sekarang pindah ke Y.", c: "Comparison" },
-            { f: "Bedanya X murahan sama Y yang beneran Z.", c: "Comparison" },
-            { f: "Duel maut: X vs Y buat urusan Z.", c: "Comparison" },
-            { f: "Kalau disuruh milih X atau Y, saya pilih Z.", c: "Comparison" },
-            { f: "Rahasia kenapa X lebih mahal dari Y tapi lebih Z.", c: "Comparison" },
-            { f: "X itu bagus, tapi Y adalah level selanjutnya.", c: "Comparison" },
-            { f: "Perbandingan jujur: X dan Y dalam mencapai Z.", c: "Comparison" },
-            { f: "Mana yang lebih worth it? X atau Y buat Z kamu.", c: "Comparison" },
-            { f: "Kenapa saya pilih X padahal Y lebih populer.", c: "Comparison" },
-            { f: "X adalah masa lalu, Y adalah masa depan Z.", c: "Comparison" },
-            { f: "Debat panas X vs Y: Inilah pemenangnya untuk Z.", c: "Comparison" },
-            { f: "X memberikan Y, tapi Z memberikan segalanya.", c: "Comparison" }
+            // COMPARISON (84-99)
+            { id: 84, f: "X vs Y: Mana yang beneran bisa kasih kamu Z?", c: "Comparison", i: "The Duel. Membantu audiens memilih di tengah keraguan pasar.", n: "All" },
+            { id: 85, f: "Kenapa saya pilih X daripada Y buat Z.", c: "Comparison", i: "Recommendation. Membangun otoritas lewat pilihan pribadi.", n: "Personal" },
+            { id: 86, f: "X murah vs X mahal: Ternyata hasilnya Y.", c: "Comparison", i: "Price-Value. Menguji apakah harga berbanding lurus dengan hasil.", n: "Beauty" },
+            { id: 87, f: "Dulu pake X sekarang pindah ke Y gara-gara Z.", c: "Comparison", i: "The Evolution. Menjelaskan alasan perpindahan brand/metode.", n: "Digital" },
+            { id: 88, f: "Metode X vs Metode Y: Mana yang paling cepat Z?", c: "Comparison", i: "Speed Test. Menarik minat orang yang butuh hasil instan.", n: "Digital" },
+            { id: 89, f: "X untuk pemula vs X untuk profesional.", c: "Comparison", i: "Segmentation. Membantu audiens mengidentifikasi level mereka.", n: "All" },
+            { id: 90, f: "Kenapa X menang telak dibanding Y soal Z.", c: "Comparison", i: "USP Focus. Menyoroti satu kelebihan fitur yang spesifik.", n: "Fisik" },
+            { id: 91, f: "Perbandingan jujur X dan Y setelah Z bulan.", c: "Comparison", i: "Trust. Review jangka panjang yang sangat kredibel.", n: "All" },
+            { id: 92, f: "X itu bagus, tapi Y jauh lebih baik buat Z.", c: "Comparison", i: "Nuance. Memberikan saran yang seimbang dan logis.", n: "All" },
+            { id: 93, f: "Pilih X kalau mau Y, pilih Z kalau mau A.", c: "Comparison", i: "Decision Tree. Memberikan opsi berdasarkan tujuan audiens.", n: "All" },
+            { id: 94, f: "Saya ngetes X dan Y selama Z hari, ini hasilnya.", c: "Comparison", i: "Experiment. Menggunakan data empiris untuk perbandingan.", n: "Beauty" },
+            { id: 95, f: "Bedanya X yang dapet Y dan X yang dapet Z.", c: "Comparison", i: "Distinction. Menunjukkan variabel kecil yang merubah hasil.", n: "All" },
+            { id: 96, f: "Kenapa saya buang X dan beli Y buat dapet Z.", c: "Comparison", i: "Consumer Journey. Cerita tentang proses pembelian yang emosional.", n: "Fisik" },
+            { id: 97, f: "X manual vs X otomatis: Mana yang beneran Z?", c: "Comparison", i: "Efficiency. Perbandingan cara kerja lama vs modern.", n: "Digital" },
+            { id: 98, f: "X luar negeri vs X lokal buat urusan Y.", c: "Comparison", i: "Geographic. Membahas relevansi produk lokal vs impor.", n: "Fisik" },
+            { id: 99, f: "Satu alasan kenapa Y lebih worth it dari X.", c: "Comparison", i: "Killer Feature. Menekankan pada satu keunggulan mutlak.", n: "All" }
         ];
 
         let activeCat = "All";
 
         function formatXYZ(text) {
-            return text.replace(/X/g, `<span class="var-badge">X</span>`)
-                       .replace(/Y/g, `<span class="var-badge">Y</span>`)
-                       .replace(/Z/g, `<span class="var-badge">Z</span>`);
+            return text.replace(/\bX\b/g, `<span class="var-badge">X</span>`)
+                       .replace(/\bY\b/g, `<span class="var-badge">Y</span>`)
+                       .replace(/\bZ\b/g, `<span class="var-badge">Z</span>`)
+                       .replace(/\bA\b/g, `<span class="var-badge">A</span>`);
         }
 
-        function renderFilters() {
-            const cats = ["All", "StorySelling", "Bold", "Negative", "Curiosity", "Listicle", "Comparison"];
-            document.getElementById('cat-filters').innerHTML = cats.map(c => `
-                <button onclick="setCat('${c}')" class="whitespace-nowrap px-6 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-widest border transition-all ${activeCat === c ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg' : 'bg-slate-900/50 border-slate-800 text-slate-500 hover:text-white'}">
-                    ${c}
-                </button>
-            `).join('');
-        }
+        function renderHooks() {
+            const nicheFilter = document.getElementById('niche-filter').value;
+            const container = document.getElementById('hook-container');
+            
+            const filtered = database.filter(item => {
+                const catMatch = activeCat === "All" || item.c === activeCat;
+                const nicheMatch = nicheFilter === "All" || item.n === nicheFilter || item.n === "All" || (Array.isArray(item.n) && item.n.includes(nicheFilter));
+                return catMatch && nicheMatch;
+            });
 
-        function renderList() {
-            const filtered = database.filter(t => activeCat === "All" || t.c === activeCat);
-            document.getElementById('hook-list-container').innerHTML = filtered.map(t => `
-                <div onclick="copyHook('${t.f}')" class="hook-item-card p-6 md:p-8 rounded-[1.8rem] group relative overflow-hidden animate__animated animate__fadeIn">
-                    <div class="flex flex-col gap-4">
-                        <div class="flex justify-between items-center">
-                            <span class="text-[8px] font-black uppercase tracking-[0.2em] text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-md border border-indigo-500/20">${t.c}</span>
-                            <span class="text-[10px] text-slate-600 font-bold group-hover:text-indigo-400 transition-colors uppercase">Tap to Copy</span>
+            container.innerHTML = filtered.map(item => `
+                <div class="glass-card p-8 md:p-10 rounded-[2.5rem] animate__animated animate__fadeInUp group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8">
+                        <span class="hashtag-id text-xl opacity-40 group-hover:opacity-100 transition-opacity">#${item.id}</span>
+                    </div>
+                    
+                    <div class="flex flex-col gap-6">
+                        <div class="flex flex-wrap items-center gap-3">
+                            <span class="px-4 py-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-[9px] font-black uppercase tracking-widest">${item.c}</span>
+                            <span class="niche-tag">${item.n}</span>
                         </div>
-                        <div class="text-lg md:text-xl font-bold text-white leading-relaxed">${formatXYZ(t.f)}</div>
+                        
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-white leading-tight tracking-tight pr-12">
+                            ${formatXYZ(item.f)}
+                        </h3>
+                        
+                        <div class="insight-box p-6 mt-4">
+                            <p class="text-[10px] font-black uppercase text-indigo-400 mb-3 tracking-widest">Strategy Insight:</p>
+                            <p class="text-sm text-slate-400 italic font-medium leading-relaxed">"${item.i}"</p>
+                        </div>
+
+                        <div class="flex justify-end pt-4">
+                            <button onclick="copyHook('${item.f}')" class="btn-action px-8 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest text-white flex items-center gap-2">
+                                <i class="fas fa-copy"></i> Copy Formula
+                            </button>
+                        </div>
                     </div>
                 </div>
             `).join('');
         }
 
-        function setCat(c) {
-            activeCat = c;
-            renderFilters();
-            renderList();
+        function renderTabs() {
+            const tabs = ["All", "StorySelling", "Bold", "Negative", "Curiosity", "Listicle", "Comparison"];
+            const container = document.getElementById('cat-tabs');
+            container.innerHTML = tabs.map(t => `
+                <button onclick="filterCat('${t}')" class="px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all border ${activeCat === t ? 'bg-indigo-600 border-indigo-500 text-white shadow-lg' : 'bg-slate-900 border-white/5 text-slate-500 hover:text-white'}">
+                    ${t}
+                </button>
+            `).join('');
         }
 
-        function generateRandomHook() {
-            const display = document.getElementById('random-hook-display');
-            display.classList.add('animate__animated', 'animate__fadeOut');
-            setTimeout(() => {
-                const random = database[Math.floor(Math.random() * database.length)];
-                display.innerHTML = formatXYZ(random.f);
-                display.classList.remove('animate__fadeOut');
-                display.classList.add('animate__fadeIn');
-            }, 300);
+        function filterCat(cat) {
+            activeCat = cat;
+            renderTabs();
+            renderHooks();
         }
 
         function copyHook(text) {
@@ -296,16 +351,12 @@
             
             const toast = document.getElementById('toast');
             toast.style.opacity = '1';
-            toast.style.bottom = '40px';
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.bottom = '32px';
-            }, 1500);
+            setTimeout(() => toast.style.opacity = '0', 2000);
         }
 
         window.onload = () => {
-            renderFilters();
-            renderList();
+            renderTabs();
+            renderHooks();
         };
     </script>
 </body>
